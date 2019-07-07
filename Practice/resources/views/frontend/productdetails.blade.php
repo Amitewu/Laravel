@@ -20,9 +20,9 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<figure>
-						<img class="product-big-img" src="{{ asset('frontend_assets/img/product/1.jpg') }}" alt="">
+						<img class="product-big-img" src="{{ asset('uploads/product_photos') }}/{{$single_product_info->product_image}}" alt="">
 					</figure>
-					<div class="product-thumbs">
+					{{-- <div class="product-thumbs">
 						<div class="product-thumbs-track">
 							<div class="pt" data-imgbigurl="{{ asset('frontend_assets/img/product/1.jpg') }}"><img src="{{ asset('frontend_assets/img/product/thumb-1.jpg') }}" alt=""></div>
 
@@ -32,7 +32,7 @@
 
 							<div class="pt" data-imgbigurl="{{ asset('frontend_assets/img/product/4.jpg') }}"><img src="{{ asset('frontend_assets/img/product/thumb-4.jpg') }}" alt=""></div>
 						</div>
-					</div>
+					</div> --}}
 				</div>
 				<div class="col-lg-6">
 					<div class="product-content">

@@ -13,13 +13,13 @@
 					List of Products
 				</div>
 				<div class="card-body">
-					@if(session('deletestatus'))
+					{{-- @if(session('deletestatus'))
 					<div class="alert alert-danger">
 						
 						{{ session('deletestatus') }}
 
 					</div>
-					@endif
+					@endif --}}
 
 					<table class="table table-broder">
 						  <thead>
@@ -41,7 +41,7 @@
 						  </thead>
 
 						  <tbody>
-						  	@forelse($products as $product)
+						  	{{-- @forelse($products as $product)
 
 						  	<tr>
 						  			<th>{{$loop->index+1}}</th>
@@ -68,13 +68,13 @@
 						    	@empty
 						    	<tr class="text-center text-danger" ><td colspan="7">Data is not available</td></tr>
 
-						  	@endforelse
+						  	@endforelse --}}
 						    
 						  </tbody>
 
 						</table>
 
-						{{$products->links()}} <!--//for pagination -->
+						{{{-- {$products->links()}}  --}}<!--//for pagination -->
 				</div>
 			</div>
 
@@ -131,7 +131,7 @@
 						  </thead>
 
 						  <tbody>
-						  	@forelse($deleted_products as $deleted_products)
+						  	{{-- @forelse($deleted_products as $deleted_products)
 
 						  	<tr>
 						  			<th>{{$loop->index+1}}</th>
@@ -158,7 +158,7 @@
 						    	<tr class="text-center text-danger" ><td colspan="7">Data is not available</td></tr>
 
 						  	@endforelse
-						    
+						     --}}
 						  </tbody>
 
 						</table>

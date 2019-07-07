@@ -40,7 +40,7 @@
 
 					
 					
-					<form action="{{url('edit/product/insert')}}" method="post">
+					<form action="{{url('edit/product/insert')}}" method="post" enctype="multipart/form-data">
 						@csrf
 						  <div class="form-group">
 						    <label>Product Name</label>
@@ -67,6 +67,20 @@
 						    <label>Alert Quantity</label>
 						    <input type="text"  class='form-control' placeholder="Enter Your Product Alert	" name="alert_quantity" value="{{$single_product_info->alert_quantity}}">
 						  </div>
+
+							  <div class="form-group">
+							        <div>
+							            <label class="file-upload btn btn-primary">
+							              <input type="file" name="product_image"/>
+							            </label>
+							        </div>
+							    </div>
+
+
+							<div>
+							<img src="{{ asset('uploads/product_photos') }}/{{$single_product_info->product_image}}" alt="Not Found" width="100">
+								</div>
+							<br>
 
 						  <button type="submit" class="btn btn-warning">Edit Product</button>
 						</form>

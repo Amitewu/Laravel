@@ -40,16 +40,16 @@
         </div>
         <div class="intro-slider">
             <ul class="slidee">
-                @foreach ($products as $products)
+                @foreach ($products as $product)
                     <li>
                     <div class="intro-item">
                         <figure>
-                            <img src="{{ asset('uploads/product_photos')}}/{{$products->product_image}}" alt="No Photos">
+                            <img src="{{ asset('uploads/product_photos')}}/{{$product->product_image}}" alt="No Photos">
                         </figure>
                         <div class="product-info">
-                            <h5>{{$products->product_name}}</h5>
-                            <p>${{$products->product_price}}</p>
-                            <a href="{{ url('/product/details') }}/{{$products->id}}" class="site-btn btn-line">ADD TO CART</a>
+                            <h5>{{$product->product_name}}</h5>
+                            <p>${{$product->product_price}}</p>
+                            <a href="{{ url('/product/details') }}/{{$product->id}}" class="site-btn btn-line">ADD TO CART</a>
                         </div>
                     </div>
                 </li>   
@@ -98,188 +98,37 @@
                 <li class="control" data-filter=".new">New arrivals</li>
                 <li class="control" data-filter="all">Recommended</li>
                 <li class="control" data-filter=".best">Best sellers</li>
+                <li class="control" data-filter=".popular">Popular Products</li>
             </ul>
             <div class="row" id="product-filter">
-                <div class="mix col-lg-3 col-md-6 best">
-                    <div class="product-item">
-                        <figure>
-                            <img src="{{ asset('frontend_assets/img/products/1.jpg') }}" alt="">
-                            <div class="pi-meta">
-                                <div class="pi-m-left">
-                                    <img src="{{ asset('frontend_assets/img/icons/eye.png') }}" alt="">
-                                    <p>quick view</p>
+
+                @foreach ($products as $product)
+                    <div class="mix col-lg-3 col-md-6 popular">
+                        <div class="product-item">
+                            <figure>
+                                <img src="{{ asset('uploads/product_photos')}}/{{$product->product_image}}" alt="">
+                                <div class="pi-meta">
+                                    <div class="pi-m-left">
+                                        <img src="{{ asset('frontend_assets/img/icons/eye.png') }}" alt="">
+                                        <p>quick view</p>
+                                    </div>
+                                    <div class="pi-m-right">
+                                        <img src="{{ asset('frontend_assets/img/icons/heart.png') }}" alt="">
+                                        <p>save</p>
+                                    </div>
                                 </div>
-                                <div class="pi-m-right">
-                                    <img src="{{ asset('frontend_assets/img/icons/heart.png') }}" alt="">
-                                    <p>save</p>
-                                </div>
+                            </figure>
+                            <div class="product-info">
+                                <h6>{{$product->product_name}}</h6>
+                                <p>${{$product->product_price}}</p>
+                                <a href="#" class="site-btn btn-line">ADD TO CART</a>
                             </div>
-                        </figure>
-                        <div class="product-info">
-                            <h6>Long red Shirt</h6>
-                            <p>$39.90</p>
-                            <a href="#" class="site-btn btn-line">ADD TO CART</a>
                         </div>
                     </div>
-                </div>
-                <div class="mix col-lg-3 col-md-6 new">
-                    <div class="product-item">
-                        <figure>
-                            <img src="{{ asset('frontend_assets/img/products/2.jpg') }}" alt="">
-                            <div class="bache">NEW</div>
-                            <div class="pi-meta">
-                                <div class="pi-m-left">
-                                    <img src="{{ asset('frontend_assets/img/icons/eye.png') }}" alt="">
-                                    <p>quick view</p>
-                                </div>
-                                <div class="pi-m-right">
-                                    <img src="{{ asset('frontend_assets/img/icons/heart.png') }}" alt="">
-                                    <p>save</p>
-                                </div>
-                            </div>
-                        </figure>
-                        <div class="product-info">
-                            <h6>Hype grey shirt</h6>
-                            <p>$19.50</p>
-                            <a href="#" class="site-btn btn-line">ADD TO CART</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="mix col-lg-3 col-md-6 best">
-                    <div class="product-item">
-                        <figure>
-                            <img src="{{ asset('frontend_assets/img/products/3.jpg') }}" alt="">
-                            <div class="pi-meta">
-                                <div class="pi-m-left">
-                                    <img src="{{ asset('frontend_assets/img/icons/eye.png') }}" alt="">
-                                    <p>quick view</p>
-                                </div>
-                                <div class="pi-m-right">
-                                    <img src="{{ asset('frontend_assets/img/icons/heart.png') }}" alt="">
-                                    <p>save</p>
-                                </div>
-                            </div>
-                        </figure>
-                        <div class="product-info">
-                            <h6>long sleeve jacket</h6>
-                            <p>$59.90</p>
-                            <a href="#" class="site-btn btn-line">ADD TO CART</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="mix col-lg-3 col-md-6 new best">
-                    <div class="product-item">
-                        <figure>
-                            <img src="{{ asset('frontend_assets/img/products/4.jpg') }}" alt="">
-                            <div class="bache sale">SALE</div>
-                            <div class="pi-meta">
-                                <div class="pi-m-left">
-                                    <img src="{{ asset('frontend_assets/img/icons/eye.png') }}" alt="">
-                                    <p>quick view</p>
-                                </div>
-                                <div class="pi-m-right">
-                                    <img src="{{ asset('frontend_assets/img/icons/heart.png') }}" alt="">
-                                    <p>save</p>
-                                </div>
-                            </div>
-                        </figure>
-                        <div class="product-info">
-                            <h6>Denim men shirt</h6>
-                            <p>$32.20 <span>RRP 64.40</span></p>
-                            <a href="#" class="site-btn btn-line">ADD TO CART</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="mix col-lg-3 col-md-6 best">
-                    <div class="product-item">
-                        <figure>
-                            <img src="{{ asset('frontend_assets/img/products/5.jpg') }}" alt="">
-                            <div class="pi-meta">
-                                <div class="pi-m-left">
-                                    <img src="{{ asset('frontend_assets/img/icons/eye.png') }}" alt="">
-                                    <p>quick view</p>
-                                </div>
-                                <div class="pi-m-right">
-                                    <img src="{{ asset('frontend_assets/img/icons/heart.png') }}" alt="">
-                                    <p>save</p>
-                                </div>
-                            </div>
-                        </figure>
-                        <div class="product-info">
-                            <h6>Long red Shirt</h6>
-                            <p>$39.90</p>
-                            <a href="#" class="site-btn btn-line">ADD TO CART</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="mix col-lg-3 col-md-6 new">
-                    <div class="product-item">
-                        <figure>
-                            <img src="{{ asset('frontend_assets/img/products/6.jpg') }}" alt="">
-                            <div class="bache">NEW</div>
-                            <div class="pi-meta">
-                                <div class="pi-m-left">
-                                    <img src="{{ asset('frontend_assets/img/icons/eye.png') }}" alt="">
-                                    <p>quick view</p>
-                                </div>
-                                <div class="pi-m-right">
-                                    <img src="{{ asset('frontend_assets/img/icons/heart.png') }}" alt="">
-                                    <p>save</p>
-                                </div>
-                            </div>
-                        </figure>
-                        <div class="product-info">
-                            <h6>Hype grey shirt</h6>
-                            <p>$19.50</p>
-                            <a href="#" class="site-btn btn-line">ADD TO CART</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="mix col-lg-3 col-md-6 best">
-                    <div class="product-item">
-                        <figure>
-                            <img src="{{ asset('frontend_assets/img/products/7.jpg') }}" alt="">
-                            <div class="pi-meta">
-                                <div class="pi-m-left">
-                                    <img src="{{ asset('frontend_assets/img/icons/eye.png') }}" alt="">
-                                    <p>quick view</p>
-                                </div>
-                                <div class="pi-m-right">
-                                    <img src="{{ asset('frontend_assets/img/icons/heart.png') }}" alt="">
-                                    <p>save</p>
-                                </div>
-                            </div>
-                        </figure>
-                        <div class="product-info">
-                            <h6>long sleeve jacket</h6>
-                            <p>$59.90</p>
-                            <a href="#" class="site-btn btn-line">ADD TO CART</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="mix col-lg-3 col-md-6 best">
-                    <div class="product-item">
-                        <figure>
-                            <img src="{{ asset('frontend_assets/img/products/8.jpg') }}" alt="">
-                            <div class="pi-meta">
-                                <div class="pi-m-left">
-                                    <img src="{{ asset('frontend_assets/img/icons/eye.png') }}" alt="">
-                                    <p>quick view</p>
-                                </div>
-                                <div class="pi-m-right">
-                                    <img src="{{ asset('frontend_assets/img/icons/heart.png') }}" alt="">
-                                    <p>save</p>
-                                </div>
-                            </div>
-                        </figure>
-                        <div class="product-info">
-                            <h6>Denim men shirt</h6>
-                            <p>$32.20 <span>RRP 64.40</span></p>
-                            <a href="#" class="site-btn btn-line">ADD TO CART</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach 
+                
             </div>
+
         </div>
     </section>
     <!-- Product section end -->

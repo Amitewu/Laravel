@@ -45,7 +45,7 @@ class ProductController extends Controller
             //  print_r($photo_to_upload->getClientOriginalExtension()); //printing the file extention
              $filename=$last_inserted_id.".".$photo_to_upload->getClientOriginalExtension();
              //echo $filename;
-             Image::make($photo_to_upload)->resize(400,450)->save(base_path('public/uploads/product_photos/'.$filename));
+             Image::make($photo_to_upload)->resize(240,320)->save(base_path('public/uploads/product_photos/'.$filename));
 
              Product::find($last_inserted_id)->update([
 
@@ -57,17 +57,27 @@ class ProductController extends Controller
     				return back()->with('status','Product Inserted Successfully');
     }
 
+
+
+
     function deleteproduct($product_id){
         //echo $product_id;
         Product::where('id',$product_id)->delete();
         return back()->with('deletestatus','Product Deleted Successfully');
     }
 
+
+
+
     function editproduct($product_id){
        // return view('product/edit');
         $single_product_info= Product::findOrFail($product_id);
         return view('product/edit',compact('single_product_info'));
     }
+
+
+
+
 
     function editproductinsert(Request $request){
 
@@ -79,6 +89,41 @@ class ProductController extends Controller
             'alert_quantity'=>'required|numeric',
 
         ]);
+
+        if ($request->hasFile('product_image')) {
+            if (Product::find($request->product_id)->product_image == 'defaultproductphoto.jpg') {
+                $photo_to_upload=$request->product_image;
+            //  print_r($photo_to_upload->getClientOriginalExtension()); //printing the file extention
+             $filename=$request->product_id.".".$photo_to_upload->getClientOriginalExtension();
+             //echo $filename;
+             Image::make($photo_to_upload)->resize(240,320)->save(base_path('public/uploads/product_photos/'.$filename));
+
+             Product::find($request->product_id)->update([
+
+                    'product_image'=>$filename
+             ]);
+            }
+
+            else
+                {
+                   $delete_file= Product::find($request->product_id)->product_image;
+                   unlink(base_path('public/uploads/product_photos/'.$delete_file));
+
+                   $photo_to_upload=$request->product_image;
+            //  print_r($photo_to_upload->getClientOriginalExtension()); //printing the file extention
+             $filename=$request->product_id.".".$photo_to_upload->getClientOriginalExtension();
+             //echo $filename;
+             Image::make($photo_to_upload)->resize(240,320)->save(base_path('public/uploads/product_photos/'.$filename));
+
+             Product::find($request->product_id)->update([
+
+                    'product_image'=>$filename
+             ]);
+
+
+                }
+
+        }
 
 
         Product::find($request->product_id)->update([
@@ -92,6 +137,10 @@ class ProductController extends Controller
         return back()->with('editstatus','Product Edited Successfully');
     }
 
+
+
+
+
     function productdetails($product_id){
 
     //echo "$product_id";
@@ -101,6 +150,10 @@ class ProductController extends Controller
 
   }
 
+
+
+
+
   function restoreproduct($product_id){
     //echo "string";
     Product::onlyTrashed()->where('id',$product_id)->restore();
@@ -108,9 +161,17 @@ class ProductController extends Controller
 
   } 
 
+
+
+
+
   function forcedeleteproduct($product_id){
-   // echo "string";
+
+   $delete_file= Product::onlyTrashed()->find($product_id)->product_image;
+    unlink(base_path('public/uploads/product_photos/'.$delete_file));
     Product::onlyTrashed()->find($product_id)->forceDelete();
+
+
     return back()->with('forcedeletestatus','Product Deleted Successfully');
   }
 }
